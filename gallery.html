@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея - КФ "АҚ БЕРЕН"</title>
+    <meta name="description" content="Фотографии с мест проведения работ, учений и нашей техники.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="menu-overlay"></div> 
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo/logo-placeholder.svg" alt="Логотип АҚ БЕРЕН" class="logo-img">
+                <span>АҚ БЕРЕН</span>
+            </a>
+            <nav class="nav" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="about.html" class="nav-link">О компании</a></li>
+                    <li><a href="services.html" class="nav-link">Услуги</a></li>
+                    <li><a href="machines.html" class="nav-link">Оснащение</a></li>
+                    <li><a href="team.html" class="nav-link">Команда</a></li>
+                    <li><a href="gallery.html" class="nav-link active">Галерея</a></li>
+                    <li><a href="contact.html" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="burger" id="burger-menu" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Галерея</h2>
+                    <p class="section-subtitle">Наша работа в действии</p>
+                    <div class="section-decorator"></div>
+                </div>
+
+                <div class="grid-layout columns-3">
+                    <a href="assets/gallery/full/photo-01.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-01.jpg" alt="Ликвидация фонтана ">
+                        </div>
+                        <h4>Тушение пожара </h4>
+                    </a>
+                    <a href="assets/gallery/full/photo-02.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-02.jpg" alt="Спасатели в снаряжении ">
+                        </div>
+                        <h4>Спасатели в снаряжении </h4>
+                    </a>
+                    <a href="assets/gallery/full/photo-03.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-03.jpg" alt="Столб дыма ">
+                        </div>
+                        <h4>Ликвидация аварии </h4>
+                    </a>
+                    <a href="assets/gallery/full/photo-04.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-04.jpg" alt="Пожарные расчеты ">
+                        </div>
+                        <h4>Пожарные расчеты </h4>
+                    </a>
+                    <a href="assets/gallery/full/photo-05.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-05.jpg" alt="Работа с пеной">
+                        </div>
+                        <h4>Работа с пеной</h4>
+                    </a>
+                    <a href="assets/gallery/full/photo-06.jpg" class="card-glow card-machine" data-lightbox="gallery">
+                        <div class="card-machine-img">
+                            <img src="assets/gallery/thumb/photo-06.jpg" alt="Спасатели на лестнице">
+                        </div>
+                        <h4>Учения</h4>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Просмотр изображения">
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> КФ "АҚ БЕРЕН". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
