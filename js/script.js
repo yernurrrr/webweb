@@ -1,19 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- 1. МЕНЮ (БУРГЕР) ---
     const burger = document.getElementById('burger-menu');
     const nav = document.getElementById('nav-menu');
     const overlay = document.querySelector('.menu-overlay');
     const navLinks = document.querySelectorAll('.nav-link');
     const body = document.body;
 
-    // Функция открытия/закрытия
     function toggleMenu() {
         burger.classList.toggle('active');
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
-        body.classList.toggle('no-scroll'); // Блокируем скролл
+        body.classList.toggle('no-scroll');
     }
 
-    // Функция принудительного закрытия
     function closeMenu() {
         burger.classList.remove('active');
         nav.classList.remove('active');
@@ -21,31 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
         body.classList.remove('no-scroll');
     }
 
-    // Обработчики событий
     if (burger && nav) {
-        burger.addEventListener('click', (e) => {
-            e.stopPropagation(); // Чтобы клик не проваливался
+        // Удаляем старые обработчики (на всякий случай) и ставим новый
+        burger.onclick = (e) => {
+            e.stopPropagation();
             toggleMenu();
-        });
+        };
 
-        // Закрыть при клике на затемненный фон
-        if (overlay) {
-            overlay.addEventListener('click', closeMenu);
-        }
-
-        // Закрыть при клике на любую ссылку
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
+        if (overlay) overlay.addEventListener('click', closeMenu);
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
     }
 
-    // --- Остальные скрипты (Год и Галерея) ---
-
-    // Год
+    // --- 2. АВТОМАТИЧЕСКИЙ ГОД ---
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // Галерея (Lightbox)
+    // --- 3. ГАЛЕРЕЯ (Lightbox) ---
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const galleryItems = document.querySelectorAll('[data-lightbox="gallery"]');
@@ -56,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const imgSrc = item.getAttribute('href');
-                if(lightboxImg) lightboxImg.setAttribute('src', imgSrc);
+                if (lightboxImg) lightboxImg.setAttribute('src', imgSrc);
                 lightbox.classList.add('active');
                 body.classList.add('no-scroll');
             });
@@ -65,41 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             body.classList.remove('no-scroll');
-            setTimeout(() => { if(lightboxImg) lightboxImg.src = ''; }, 300);
+            setTimeout(() => { if (lightboxImg) lightboxImg.src = ''; }, 300);
         };
 
         if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
     }
-});
-document.addEventListener("DOMContentLoaded", () => {
-    // --- СТАРЫЙ КОД (Меню и Галерея) ---
-    const burger = document.getElementById('burger-menu');
-    const nav = document.getElementById('nav-menu');
-    const overlay = document.querySelector('.menu-overlay');
-    const body = document.body;
 
-    function toggleMenu() {
-        burger.classList.toggle('active');
-        nav.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.classList.toggle('no-scroll');
-    }
-    function closeMenu() {
-        burger.classList.remove('active');
-        nav.classList.remove('active');
-        overlay.classList.remove('active');
-        body.classList.remove('no-scroll');
-    }
-    if (burger && nav) {
-        burger.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
-        if (overlay) overlay.addEventListener('click', closeMenu);
-        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeMenu));
-    }
-    const yearSpan = document.getElementById('current-year');
-    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-    // --- НОВЫЙ КОД: МОДАЛЬНОЕ ОКНО ТЕХНИКИ (ПОЛНЫЙ СПИСОК 1-20) ---
+    // --- 4. МОДАЛЬНОЕ ОКНО ТЕХНИКИ (Список 1-20) ---
     const machinesData = {
         "1": {
             title: "Камаз 4208 (Вахтовка)",

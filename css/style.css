@@ -525,3 +525,30 @@ main .section:first-child { padding-top: 2rem; }
         grid-template-columns: repeat(3, 1fr);
     }
 }
+/* --- ФИНАЛЬНАЯ КОРРЕКЦИЯ: ТАБЛИЧНЫЙ ВИД НА ТЕЛЕФОНЕ --- */
+@media (max-width: 768px) {
+
+    /* 1. Возвращаем сетку (3 и 4 колонки) как на ПК */
+    .columns-3 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .columns-4 {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    /* 2. Карточки сотрудников тоже в 4 колонки (или 2, если будет слишком мелко) */
+    .team-grid-simple {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    /* 3. Разрешаем перенос слов, чтобы текст влез */
+    .card-team-name, .card-team-title, .card-team-simple h4, .card-team-simple p {
+        word-break: break-word !important;
+        hyphens: auto !important;
+    }
+
+    /* 4. Уменьшаем шрифт еще сильнее для такого режима */
+    html {
+        font-size: 10px !important;
+    }
+}
