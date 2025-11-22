@@ -451,3 +451,77 @@ main .section:first-child { padding-top: 2rem; }
         opacity: 0.8;
     }
 }
+/* ==========================================================================
+   7. АДАПТИВНОСТЬ (Специальная версия: Бургер есть, но колонки как на ПК)
+   ========================================================================== */
+
+/* --- НОУТБУКИ И ПЛАНШЕТЫ (до 1200px) --- */
+@media (max-width: 1200px) {
+
+    /* 1. Включаем Бургер и мобильное меню */
+    .burger { display: block; }
+
+    .nav {
+        position: fixed; top: 0; right: 0;
+        width: 280px; height: 100vh;
+        background: #0f111f;
+        border-left: 1px solid var(--color-primary);
+        padding-top: 100px;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1002;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.7);
+        overflow-y: auto;
+    }
+
+    .nav.active { transform: translateX(0); }
+    .nav-list { flex-direction: column; align-items: center; gap: 1.5rem; }
+    .nav-link { font-size: 1.1rem; display: block; width: 100%; text-align: center; }
+
+    /* ВАЖНО: Мы НЕ меняем количество колонок здесь.
+       Они остаются 3 или 4, как на компьютере. */
+
+    /* Технику можно оставить в 1 колонку, если хотите, или удалить эту строку: */
+    /* .fleet-featured { grid-template-columns: 1fr; } */
+
+    /* Контакты лучше перестроить, иначе карта будет сплющена */
+    .contact-grid, .office-map-card { grid-template-columns: 1fr; }
+}
+
+/* --- МОБИЛЬНЫЕ ТЕЛЕФОНЫ (до 768px) --- */
+@media (max-width: 768px) {
+    /* Тут мы ТОЛЬКО уменьшаем шрифты, чтобы 3 колонки влезли */
+
+    html { font-size: 12px; } /* Уменьшаем базовый шрифт */
+
+    .container { padding: 0 5px; } /* Меньше отступов по бокам */
+    .section { padding: 2rem 0; }
+
+    /* Принудительно держим сетку (Grid) */
+    .grid-layout {
+        gap: 5px !important; /* Маленький зазор между колонками */
+    }
+
+    /* Карточки сотрудников и техники */
+    .card-glow { padding: 10px; } /* Меньше воздуха внутри карточек */
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 0.9rem; }
+    p, li { font-size: 0.8rem; }
+
+    /* Исправляем картинки, чтобы не плющило */
+    .card-team-img { height: 100px; }
+
+    /* Кнопки поменьше */
+    .btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+}
+
+/* --- Ваши стили для модального окна и 3-х колонок руководства --- */
+@media (max-width: 768px) {
+    /* Если у вас был спец. класс mobile-row-3, он будет работать нормально,
+       так как мы не ломаем общую сетку */
+    .grid-layout.mobile-row-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
