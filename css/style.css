@@ -526,29 +526,85 @@ main .section:first-child { padding-top: 2rem; }
     }
 }
 /* --- ФИНАЛЬНАЯ КОРРЕКЦИЯ: ТАБЛИЧНЫЙ ВИД НА ТЕЛЕФОНЕ --- */
+/* --- ИСПРАВЛЕННАЯ АДАПТАЦИЯ (Текст - крупно, Сотрудники - мелко) --- */
 @media (max-width: 768px) {
 
-    /* 1. Возвращаем сетку (3 и 4 колонки) как на ПК */
+    /* 1. ОБЫЧНЫЕ БЛОКИ (Услуги, Задачи) делаем в 1 колонку (вертикально) */
     .columns-3 {
+        grid-template-columns: 1fr !important; /* Одна колонка */
+        gap: 1.5rem !important;
+    }
+
+    /* 2. НО! Если это блок с РУКОВОДСТВОМ (класс mobile-row-3), то держим 3 в ряд */
+    .grid-layout.mobile-row-3 {
         grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px !important;
+    }
+
+    /* 3. Списки сотрудников (фамилии) - можно оставить 2 или 4 в ряд */
+    .team-grid-simple {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 колонки лучше для имен */
     }
     .columns-4 {
-        grid-template-columns: repeat(4, 1fr) !important;
+         grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    /* 2. Карточки сотрудников тоже в 4 колонки (или 2, если будет слишком мелко) */
-    .team-grid-simple {
-        grid-template-columns: repeat(4, 1fr) !important;
-    }
-
-    /* 3. Разрешаем перенос слов, чтобы текст влез */
+    /* 4. Настройки шрифтов для табличного вида */
     .card-team-name, .card-team-title, .card-team-simple h4, .card-team-simple p {
         word-break: break-word !important;
         hyphens: auto !important;
     }
 
-    /* 4. Уменьшаем шрифт еще сильнее для такого режима */
+    /* Общий размер шрифта чуть меньше стандарта */
     html {
-        font-size: 10px !important;
+        font-size: 14px !important;
+    }
+}
+/* ==========================================================================
+   ФИНАЛЬНАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (Правильная сетка)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* 1. БАЗОВЫЙ ШРИФТ */
+    html {
+        font-size: 13px !important; /* Чуть меньше, чтобы влезало */
+    }
+
+    /* 2. БОЛЬШИЕ КАРТОЧКИ (Услуги, Задачи, Оснащение) */
+    /* Их лучше делать по 1 в ряд, чтобы было крупно и красиво */
+    .columns-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* 3. СПИСКИ (Инженеры, Спасатели, История, Вакансии) */
+    /* Было 4 в ряд -> Станет 2 в ряд (2 сверху, 2 снизу) */
+    .columns-4, .team-grid-simple {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* 4. ИСКЛЮЧЕНИЕ: РУКОВОДСТВО (С фото) */
+    /* Вы просили их оставить 3 в ряд (мелко) */
+    .grid-layout.mobile-row-3 {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px !important;
+    }
+
+    /* 5. НАСТРОЙКИ ТЕКСТА */
+    /* Разрешаем перенос длинных слов (фамилий), чтобы не ломали сетку */
+    .card-team-name,
+    .card-team-title,
+    .card-team-simple h4,
+    .card-team-simple p,
+    .card-history h3,
+    .card-history p {
+        word-break: break-word !important;
+        hyphens: auto !important;
+    }
+
+    /* Чуть уменьшаем отступы внутри простых карточек */
+    .card-team-simple {
+        padding: 10px 5px !important;
     }
 }
